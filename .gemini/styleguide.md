@@ -1,6 +1,6 @@
 # Carrefour React Native retail application
 
-The application aims to clone current Carrefour France mobile app.
+The application aims to clone current Carrefour France mobile app, a french retail company.
 This app will have multiple page in a tab bar (Accueil, Rechercher, Mes produits, Promotions, Panier).
 
 **OUTPUT ONLY TYPESCRIPT CODE**
@@ -49,3 +49,17 @@ export type Theme = {
 ```
 
 You will need to edit these colors to follow styles from Figma assets.
+
+Important: all pages should be wrapped in a SafeAreaView.
+
+```typescript
+import { SafeAreaView } from "react-native-safe-area-context";
+```
+
+## Project architecture
+
+- Components should be in `./components` and sorted in atomic design
+- Assets should be in `./assets`
+- Should use Expo app router (file based).
+- Expo SDK 54 and React Native 0.81
+- 2025 Best Practices for mobile development
