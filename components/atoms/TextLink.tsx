@@ -34,5 +34,7 @@ const getStyles = (theme: Theme) =>
     text: {
       textDecorationLine: "underline",
       fontSize: 16,
+      fontFamily: "Ubuntu",
+      fontWeight: 700,
     },
   });

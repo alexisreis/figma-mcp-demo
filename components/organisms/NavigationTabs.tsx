@@ -89,8 +89,9 @@ const getStyles = (theme: Theme) =>
       backgroundColor: "#FFFFFF",
     },
     tabText: {
+      fontFamily: "Ubuntu",
       fontSize: 16,
-      fontWeight: "bold",
+      fontWeight: 700,
       textAlign: "center",
     },
     activeTabText: {

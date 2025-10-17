@@ -38,6 +38,32 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Ubuntu-400.ttf",
+            "../assets/fonts/Ubuntu-700.ttf"
+          ],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "Ubuntu",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Ubuntu-400.ttf",
+                    "weight": 400
+                  },
+                  {
+                    "path": "./assets/fonts/Ubuntu-700.ttf",
+                    "weight": 700
+                  }
+                ]
+              }
+            ]
+          }
+        }
       ]
     ],
     "experiments": {
