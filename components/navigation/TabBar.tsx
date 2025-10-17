@@ -69,10 +69,10 @@ export const TabBar = ({
             onLongPress={onLongPress}
             style={styles.tabItem}
           >
-            {icon(route.name, isFocused ? theme.primaryColor : theme.icon)}
+            {icon(route.name, isFocused ? theme.primaryColor : theme.tabIcon)}
             <Text
               style={{
-                color: isFocused ? theme.primaryColor : theme.icon,
+                color: isFocused ? theme.primaryColor : theme.tabIcon,
                 fontSize: 10,
               }}
             >
