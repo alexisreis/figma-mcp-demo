@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+# mcp-figma-reactnative
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This demo shows a mock-up of Carrefour France mobile application using Expo Go.
 
-## Get started
+![Demo](/docs/demo.gif "mcp figma demonstration")
 
-1. Install dependencies
+## Prerequisites
 
-   ```bash
-   npm install
-   ```
+- Node > 20
+- iOS simulator on Android simulator running
+- GitHub Copilot or any extension that is compatible with MCP and agents / tool calling
+- Figma Desktop with a Dev mode enabled account
+- Configure Figma MCP with your Github Copilot (or other extension). [Tutorial here](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server).
 
-2. Start the app
+Tested on macOs with an iOS simulator (iOS 18.6).
 
-   ```bash
-   npx expo start
-   ```
+## Project installation
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```sh
+bun install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## How to start the app
 
-## Learn more
+- On an iOS simulator:
 
-To learn more about developing your project with Expo, look at the following resources:
+```sh
+bun start --ios --localhost
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- On an Android simulator
 
-## Join the community
+```sh
+bun start --android localhost
+```
 
-Join our community of developers creating universal apps.
+You should see ExpoGo starting on your simulator and launching the app.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Demo
+
+In this demonstration, we integrate the last component of the design that is not yet implemented on the homescreen: the GoToShoppingListCard component.
+
+1. You will need to open [this project](https://www.figma.com/design/6DqDcFqb6BDLAi9qpHCmgY/MCP---Carrefour?node-id=0-1&t=woY1wG8rALbuR3Mc-1) on Figma Desktop and enable the MCP in the right tab.
+
+2. On Figma, right click on the GoToShoppingListCard component and select "Copy link to selection". We will use that link to tell our agent what component it should create.
+
+3. Run the expo project on a simulator (or on a real device).
+
+4. In Github copilot, create an new conversation, select Agent mode and an agentic model (like Claude Sonnet 4 or other model compatible with tool calling) type this prompt:
+
+   Create this GoToShoppingList component **<PASTE_FIGMA_SELECTION_LINK>** using existing NewTag and TextButton and display it on Home.
+
+Do not forget to add to the context:
+
+- the Homepage file: `index.tsx`
+- the already implemented components it has to use: `NewTag.tsx` and `TextButton.tsx`
+
+4. Run the prompt and watch as the magic happens
+
+Notice that the agent uses 2 MCP:
+
+- `get_design_context` to extract all styles and assets
+- `get_screenshot` to get a visual representation of what the component should look like
+
+and the image asset present in the design is directly imported inside our project.
+
+- We are leveraging rule files for this so the model has basic context about the projet we are working on and convention guidelines to use in this project. You can check them out [here for Github Copilot](.github/instructions.md) and [here for Gemini Code assist](.gemini/styleguide.md).
